@@ -13,7 +13,7 @@ export interface IGenderData {
   probability: number;
 }
 
-interface ICountry {
+export interface ICountry {
   country_id: string;
   probability: number;
 }
