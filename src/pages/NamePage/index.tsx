@@ -6,10 +6,12 @@ import { NameCountries } from "@/components/NameCountries/NameCountries.componen
 import { NameForm } from "@/components/NameForm/NameForm.component";
 import { useNameData } from "@/hooks/useNameData";
 import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary.component";
+import { LoadingOverlay } from "@/components/LoadingOverlay/LoadingOverlay.component";
+
 export const NamePage = () => {
   const { nameData, isLoading, isError, fetchNameData } = useNameData();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <LoadingOverlay />;
   if (isError) return <ErrorBoundary />;
 
   return (
