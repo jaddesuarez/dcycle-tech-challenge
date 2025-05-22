@@ -5,12 +5,12 @@ import { NameOverview } from "@/components/NameOverview/NameOverview.component";
 import { NameCountries } from "@/components/NameCountries/NameCountries.component";
 import { NameForm } from "@/components/NameForm/NameForm.component";
 import { useNameData } from "@/hooks/useNameData";
-
+import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary.component";
 export const NamePage = () => {
   const { nameData, isLoading, isError, fetchNameData } = useNameData();
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error</p>;
+  if (isError) return <ErrorBoundary />;
 
   return (
     <PageLayout>
