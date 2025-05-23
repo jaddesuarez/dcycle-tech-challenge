@@ -6,7 +6,7 @@ import {
   ChartLegend,
   ChartLegendContent,
 } from "@/components/ui/chart";
-import { ChartWrapper } from "@/components/ChartWrapper/ChartWrapper.component";
+import { DataWrapper } from "@/components/DataWrapper/DataWrapper.component";
 import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { formatDate } from "@/utils/date";
 import { chartConfigs } from "@/utils/chartConfig";
@@ -17,7 +17,7 @@ export const CovidHospitalizationMetrics = ({
   hospitalizedOverTime: IHospitalizedOverTime[];
 }) => {
   return (
-    <ChartWrapper
+    <DataWrapper
       title="Hospitalization Metrics"
       description="COVID-19 hospitalization metrics in the United States over a 7-day period"
     >
@@ -52,6 +52,6 @@ export const CovidHospitalizationMetrics = ({
           <ChartLegend content={<ChartLegendContent />} />
         </BarChart>
       </ChartContainer>
-    </ChartWrapper>
+    </DataWrapper>
   );
 };

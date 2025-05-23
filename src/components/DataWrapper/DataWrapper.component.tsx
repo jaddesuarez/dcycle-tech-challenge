@@ -6,7 +6,7 @@ import {
   CardContent,
 } from "../ui/card";
 
-export const ChartWrapper = ({
+export const DataWrapper = ({
   title,
   description,
   children,

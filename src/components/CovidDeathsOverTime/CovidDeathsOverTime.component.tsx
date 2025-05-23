@@ -1,5 +1,5 @@
 import type { IDeathsOverTime } from "@/types/covid.types";
-import { ChartWrapper } from "@/components/ChartWrapper/ChartWrapper.component";
+import { DataWrapper } from "@/components/DataWrapper/DataWrapper.component";
 import { OverTimeLineChat } from "../OverTimeLineChat/OverTimeLineChat.component";
 
 export const CovidDeathsOverTime = ({
@@ -8,7 +8,7 @@ export const CovidDeathsOverTime = ({
   deathsOverTime: IDeathsOverTime[];
 }) => {
   return (
-    <ChartWrapper
+    <DataWrapper
       title="Deaths Over Time"
       description="COVID-19 deaths in the United States over a 7-day period"
     >
@@ -19,6 +19,6 @@ export const CovidDeathsOverTime = ({
           value: item.deaths,
         }))}
       />
-    </ChartWrapper>
+    </DataWrapper>
   );
 };

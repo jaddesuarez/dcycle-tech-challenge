@@ -3,7 +3,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { ChartWrapper } from "@/components/ChartWrapper/ChartWrapper.component";
+import { DataWrapper } from "@/components/DataWrapper/DataWrapper.component";
 import { BarChart, Bar, CartesianGrid, XAxis } from "recharts";
 import { chartConfigs } from "@/utils/chartConfig";
 import { getPercentage } from "@/utils/getPercentage";
@@ -22,7 +22,7 @@ export const NameCountries = ({ nameData }: NameCountriesProps) => {
   }));
 
   return (
-    <ChartWrapper
+    <DataWrapper
       title="Country Distribution"
       description={`Probability by country for the name ${upperCaseFirstLetter(
         name
@@ -49,6 +49,6 @@ export const NameCountries = ({ nameData }: NameCountriesProps) => {
           />
         </BarChart>
       </ChartContainer>
-    </ChartWrapper>
+    </DataWrapper>
   );
 };

@@ -6,7 +6,7 @@ import {
   ChartLegend,
   ChartLegendContent,
 } from "@/components/ui/chart";
-import { ChartWrapper } from "@/components/ChartWrapper/ChartWrapper.component";
+import { DataWrapper } from "@/components/DataWrapper/DataWrapper.component";
 import { Line, LineChart, XAxis, YAxis } from "recharts";
 import { formatDate } from "@/utils/date";
 import { chartConfigs } from "@/utils/chartConfig";
@@ -19,7 +19,7 @@ export const CovidCasesOverTime = ({
   const minYAxisValue = casesOverTime?.[0]?.cases;
 
   return (
-    <ChartWrapper
+    <DataWrapper
       title="Cases Over Time"
       description="COVID-19 cases in the United States over a 7-day period"
     >
@@ -55,6 +55,6 @@ export const CovidCasesOverTime = ({
           <ChartLegend content={<ChartLegendContent />} />
         </LineChart>
       </ChartContainer>
-    </ChartWrapper>
+    </DataWrapper>
   );
 };
