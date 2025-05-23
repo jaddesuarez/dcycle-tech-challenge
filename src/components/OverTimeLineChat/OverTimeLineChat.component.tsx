@@ -48,7 +48,7 @@ export const OverTimeLineChat = ({
           type="monotone"
           dataKey="value"
           name={configKey}
-          stroke={`var(--color-${chartConfigs[configKey][configKey].color})`}
+          stroke="var(--color-midnightBlue)"
           strokeWidth={2}
           dot={false}
         />

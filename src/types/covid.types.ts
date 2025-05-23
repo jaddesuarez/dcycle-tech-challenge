@@ -65,6 +65,7 @@ export interface IGroupedCovidData {
   covidOverview: ICovidOverview;
   casesOverTime: ICasesOverTime[];
   deathsOverTime: IDeathsOverTime[];
+  hospitalizedOverTime: IHospitalizedOverTime[];
 }
 
 export interface ICovidOverview {
@@ -80,5 +81,12 @@ export interface ICasesOverTime {
 }
 export interface IDeathsOverTime {
   deaths: number;
+  date: Date;
+}
+
+export interface IHospitalizedOverTime {
+  hospitalized: number;
+  inIcu: number;
+  onVentilator: number;
   date: Date;
 }

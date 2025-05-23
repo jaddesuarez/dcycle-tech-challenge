@@ -3,6 +3,7 @@ import type {
   ICasesOverTime,
   ICovidData,
   IDeathsOverTime,
+  IHospitalizedOverTime,
 } from "@/types/covid.types";
 import { getPercentage } from "./getPercentage";
 
@@ -59,6 +60,24 @@ export const getDeathsOverTimeData = (
       return {
         date: new Date(item.date),
         deaths: item.outcomes.death.total.value || 0,
+      };
+    })
+    .filter((item) => !isNaN(item.date.getTime())) // Filter out invalid dates
+    .reverse(); // Reverse to show oldest to newest
+};
+
+// GROUP COVID HOSPITALIZED OVER TIME DATA
+export const getHospitalizedOverTimeData = (
+  data: ICovidData[]
+): IHospitalizedOverTime[] => {
+  return getDataFromLast7AvailableDays(data)
+    .map((item) => {
+      return {
+        date: new Date(item.date),
+        hospitalized: item.outcomes.hospitalized.currently.value || 0,
+        inIcu: item.outcomes.hospitalized.in_icu.currently.value || 0,
+        onVentilator:
+          item.outcomes.hospitalized.on_ventilator.currently.value || 0,
       };
     })
     .filter((item) => !isNaN(item.date.getTime())) // Filter out invalid dates

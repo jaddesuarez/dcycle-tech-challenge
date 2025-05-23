@@ -14,4 +14,18 @@ export const chartConfigs = {
   cases: createChartConfig("cases", "Cases "),
   deaths: createChartConfig("deaths", "Deaths "),
   tests: createChartConfig("tests", "Tests "),
+  hospitalized: {
+    hospitalized: {
+      label: "Hospitalized ",
+      color: "var(--chart-1)",
+    },
+    inIcu: {
+      label: "In ICU ",
+      color: "var(--chart-2)",
+    },
+    onVentilator: {
+      label: "On Ventilator ",
+      color: "var(--chart-3)",
+    },
+  },
 } as const;

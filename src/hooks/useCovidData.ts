@@ -6,6 +6,7 @@ import {
   getOverViewData,
   getCasesOverTimeData,
   getDeathsOverTimeData,
+  getHospitalizedOverTimeData,
 } from "@/utils/groupCovidData";
 
 export const useCovidData = () => {
@@ -26,6 +27,9 @@ export const useCovidData = () => {
         covidOverview: getOverViewData(covidDataResponse.data),
         casesOverTime: getCasesOverTimeData(covidDataResponse.data),
         deathsOverTime: getDeathsOverTimeData(covidDataResponse.data),
+        hospitalizedOverTime: getHospitalizedOverTimeData(
+          covidDataResponse.data
+        ),
       });
     }
   }, [covidDataResponse]);

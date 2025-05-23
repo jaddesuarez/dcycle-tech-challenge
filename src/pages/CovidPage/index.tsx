@@ -41,7 +41,11 @@ export const CovidPage = () => {
             />
           )}
         </div>
-        <CovidHospitalizationMetrics />
+        {covidGroupedData && (
+          <CovidHospitalizationMetrics
+            hospitalizedOverTime={covidGroupedData.hospitalizedOverTime}
+          />
+        )}
         <CovidMetricsTable />
       </div>
     </PageLayout>
