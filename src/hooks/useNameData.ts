@@ -12,8 +12,8 @@ export const useNameData = () => {
 
   const {
     mutate: fetchNameData,
-    isPending: isLoading,
-    error: isError,
+    isPending: isLoadingNameData,
+    error: errorNameData,
   } = useMutation({
     mutationFn: async (name: string) => {
       const normalizedName = normalizeName(name);
@@ -40,8 +40,8 @@ export const useNameData = () => {
 
   return {
     nameData,
-    isLoading,
-    isError,
+    isLoadingNameData,
+    errorNameData,
     fetchNameData,
   };
 };

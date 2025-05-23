@@ -9,10 +9,11 @@ import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary.componen
 import { LoadingOverlay } from "@/components/LoadingOverlay/LoadingOverlay.component";
 
 export const NamePage = () => {
-  const { nameData, isLoading, isError, fetchNameData } = useNameData();
+  const { nameData, isLoadingNameData, errorNameData, fetchNameData } =
+    useNameData();
 
-  if (isLoading) return <LoadingOverlay />;
-  if (isError) return <ErrorBoundary />;
+  if (isLoadingNameData) return <LoadingOverlay />;
+  if (errorNameData) return <ErrorBoundary />;
 
   return (
     <PageLayout>
