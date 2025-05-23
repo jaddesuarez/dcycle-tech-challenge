@@ -7,6 +7,7 @@ import {
   getCasesOverTimeData,
   getDeathsOverTimeData,
   getHospitalizedOverTimeData,
+  getCovidMetricsTableData,
 } from "@/utils/groupCovidData";
 
 export const useCovidData = () => {
@@ -30,6 +31,7 @@ export const useCovidData = () => {
         hospitalizedOverTime: getHospitalizedOverTimeData(
           covidDataResponse.data
         ),
+        covidMetricsTable: getCovidMetricsTableData(covidDataResponse.data),
       });
     }
   }, [covidDataResponse]);

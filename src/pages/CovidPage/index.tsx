@@ -29,24 +29,30 @@ export const CovidPage = () => {
         {covidGroupedData && (
           <CovidOverview covidOverview={covidGroupedData.covidOverview} />
         )}
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="hidden md:flex flex-col gap-4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            {covidGroupedData && (
+              <CovidCasesOverTime
+                casesOverTime={covidGroupedData.casesOverTime}
+              />
+            )}
+            {covidGroupedData && (
+              <CovidDeathsOverTime
+                deathsOverTime={covidGroupedData.deathsOverTime}
+              />
+            )}
+          </div>
           {covidGroupedData && (
-            <CovidCasesOverTime
-              casesOverTime={covidGroupedData.casesOverTime}
+            <CovidHospitalizationMetrics
+              hospitalizedOverTime={covidGroupedData.hospitalizedOverTime}
             />
           )}
           {covidGroupedData && (
-            <CovidDeathsOverTime
-              deathsOverTime={covidGroupedData.deathsOverTime}
+            <CovidMetricsTable
+              covidMetricsTable={covidGroupedData.covidMetricsTable}
             />
           )}
         </div>
-        {covidGroupedData && (
-          <CovidHospitalizationMetrics
-            hospitalizedOverTime={covidGroupedData.hospitalizedOverTime}
-          />
-        )}
-        <CovidMetricsTable />
       </div>
     </PageLayout>
   );

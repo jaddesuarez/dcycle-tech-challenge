@@ -4,6 +4,7 @@ import type {
   ICovidData,
   IDeathsOverTime,
   IHospitalizedOverTime,
+  ICovidMetricsTable,
 } from "@/types/covid.types";
 import { getPercentage } from "./getPercentage";
 
@@ -14,15 +15,11 @@ const getDataFromLast7AvailableDays = (data: ICovidData[]): ICovidData[] => {
 // GROUP COVID OVERVIEW DATA
 export const getOverViewData = (data: ICovidData[]): ICovidOverview => {
   // Get the most recent data point
-  const latestData = getDataFromLast7AvailableDays(data);
+  const latestData = data[0];
 
-  const sumReducer = (path: (data: ICovidData) => number | null) => {
-    return latestData.reduce((acc, curr) => acc + (path(curr) || 0), 0);
-  };
-
-  const totalCases = sumReducer((data) => data.cases.total.value);
-  const totalDeaths = sumReducer((data) => data.outcomes.death.total.value);
-  const totalTests = sumReducer((data) => data.testing.total.value);
+  const totalCases = latestData.cases.total.value || 0;
+  const totalDeaths = latestData.outcomes.death.total.value || 0;
+  const totalTests = latestData.testing.total.value || 0;
 
   // Calculate mortality rate
   const mortalityRate = getPercentage(totalDeaths / totalCases);
@@ -74,6 +71,29 @@ export const getHospitalizedOverTimeData = (
     .map((item) => {
       return {
         date: new Date(item.date),
+        hospitalized: item.outcomes.hospitalized.currently.value || 0,
+        inIcu: item.outcomes.hospitalized.in_icu.currently.value || 0,
+        onVentilator:
+          item.outcomes.hospitalized.on_ventilator.currently.value || 0,
+      };
+    })
+    .filter((item) => !isNaN(item.date.getTime())) // Filter out invalid dates
+    .reverse(); // Reverse to show oldest to newest
+};
+
+export const getCovidMetricsTableData = (
+  data: ICovidData[]
+): ICovidMetricsTable[] => {
+  return getDataFromLast7AvailableDays(data)
+    .map((item) => {
+      return {
+        date: new Date(item.date),
+        newCases: item.cases.total.calculated.change_from_prior_day || 0,
+        tested: item.testing.total.calculated.change_from_prior_day || 0,
+        recovered:
+          item.outcomes.hospitalized.currently.calculated
+            .change_from_prior_day || 0,
+        deaths: item.outcomes.death.total.value || 0,
         hospitalized: item.outcomes.hospitalized.currently.value || 0,
         inIcu: item.outcomes.hospitalized.in_icu.currently.value || 0,
         onVentilator:
