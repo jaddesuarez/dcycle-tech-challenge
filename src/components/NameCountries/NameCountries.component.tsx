@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/chart";
 import { ChartWrapper } from "@/components/ChartWrapper/ChartWrapper.component";
 import { BarChart, Bar, CartesianGrid, XAxis } from "recharts";
-import { type ChartConfig } from "@/components/ui/chart";
+import { chartConfigs } from "@/utils/chartConfig";
 import { getPercentage } from "@/utils/getPercentage";
 import { getCountryFlag } from "@/utils/getCountryFlag";
 import type { INameData } from "@/types/name.types";
@@ -21,13 +21,6 @@ export const NameCountries = ({ nameData }: NameCountriesProps) => {
     probability: getPercentage(country.probability),
   }));
 
-  const chartConfig = {
-    probability: {
-      label: "Probability (%) ",
-      color: "midnightBlue",
-    },
-  } satisfies ChartConfig;
-
   return (
     <ChartWrapper
       title="Country Distribution"
@@ -35,7 +28,10 @@ export const NameCountries = ({ nameData }: NameCountriesProps) => {
         name
       )}`}
     >
-      <ChartContainer config={chartConfig} className="max-h-100 w-full">
+      <ChartContainer
+        config={chartConfigs.probability}
+        className="max-h-100 w-full"
+      >
         <BarChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
           <XAxis
@@ -48,7 +44,7 @@ export const NameCountries = ({ nameData }: NameCountriesProps) => {
           <ChartTooltip content={<ChartTooltipContent />} />
           <Bar
             dataKey="probability"
-            fill="var(--color-probability)"
+            fill="var(--color-midnightBlue)"
             radius={4}
           />
         </BarChart>

@@ -60,3 +60,25 @@ export interface FieldDefinition {
   deprecated: boolean;
   prior_names: string[];
 }
+
+export interface IGroupedCovidData {
+  covidOverview: ICovidOverview;
+  casesOverTime: ICasesOverTime[];
+  deathsOverTime: IDeathsOverTime[];
+}
+
+export interface ICovidOverview {
+  totalCases: number;
+  totalDeaths: number;
+  totalTests: number;
+  mortalityRate: number;
+}
+
+export interface ICasesOverTime {
+  cases: number;
+  date: Date;
+}
+export interface IDeathsOverTime {
+  deaths: number;
+  date: Date;
+}

@@ -19,7 +19,9 @@ export const ChartWrapper = ({
     <Card className="w-full">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="hidden md:block">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
     </Card>
