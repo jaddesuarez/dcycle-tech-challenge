@@ -1,14 +1,19 @@
 import { useState } from "react";
-import type { INameData } from "@/types/name.types";
+import type { INameData, INameAnalysisAI } from "@/types/name.types";
 import { useMutation } from "@tanstack/react-query";
 import {
   getAgeByName,
   getNationalityByName,
   getGenderByName,
 } from "@/services/name.service";
+
 import { normalizeName } from "@/utils/normalizeName";
+import { getNameAnalysis } from "@/services/ai.service";
 export const useNameData = () => {
   const [nameData, setNameData] = useState<INameData | null>(null);
+  const [namAnalysisAI, setNameAnalysisAI] = useState<INameAnalysisAI | null>(
+    null
+  );
 
   const {
     mutate: fetchNameData,
@@ -17,21 +22,26 @@ export const useNameData = () => {
   } = useMutation({
     mutationFn: async (name: string) => {
       const normalizedName = normalizeName(name);
-      const [gender, countries, age] = await Promise.all([
+      const [gender, countries, age, analysisAI] = await Promise.all([
         getGenderByName(normalizedName),
         getNationalityByName(normalizedName),
         getAgeByName(normalizedName),
+        getNameAnalysis(normalizedName),
       ]);
 
       return {
-        name,
-        gender: gender,
-        countries,
-        age,
+        nameData: {
+          name,
+          gender: gender,
+          countries,
+          age,
+        },
+        analysisAI,
       };
     },
     onSuccess: (data) => {
-      setNameData(data);
+      setNameData(data.nameData);
+      setNameAnalysisAI(data.analysisAI);
     },
     onError: () => {
       console.log("Something went wrong");
@@ -40,6 +50,7 @@ export const useNameData = () => {
 
   return {
     nameData,
+    namAnalysisAI,
     isLoadingNameData,
     errorNameData,
     fetchNameData,

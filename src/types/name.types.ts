@@ -30,3 +30,24 @@ export interface INameData {
   gender: IGenderData;
   countries: INationalityData;
 }
+
+export interface INameAnalysisAI {
+  origin: {
+    culturalOrigin: string;
+    etymology: string;
+    historicalContext: string;
+  };
+  relatedNames: string[];
+  astrology: {
+    mostCommonSign: string;
+    element: string;
+    planet: string;
+    keyTraits: string[];
+    luckyNumbers: string[];
+    luckyColors: string[];
+  };
+  meaningAndPersonality: {
+    primaryMeaning: string;
+    personalityTraits: string;
+  };
+}

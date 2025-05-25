@@ -11,10 +11,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchIcon } from "lucide-react";
 import type { UseMutateFunction } from "@tanstack/react-query";
-import type { INameData } from "@/types/name.types";
+import type { INameData, INameAnalysisAI } from "@/types/name.types";
 
 interface NameFormProps {
-  onSearch: UseMutateFunction<INameData, Error, string>;
+  onSearch: UseMutateFunction<
+    { nameData: INameData; analysisAI: INameAnalysisAI },
+    Error,
+    string
+  >;
 }
 
 export const NameForm = ({ onSearch }: NameFormProps) => {
